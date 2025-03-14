@@ -1,4 +1,4 @@
-import { getCartFromLocalStorage } from "./getCartProducts";
+import { getCartFromLocalStorage } from "./getCartFromLs";
 
 export const addToCart = (event, id, stock) => {
     let arrLocalStorageProduct = getCartFromLocalStorage();
