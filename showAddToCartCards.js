@@ -1,4 +1,5 @@
 import products from './api/products.json';
+import { cartQuantityToggle } from './cartQuantityToggle';
 import { getCartFromLocalStorage } from "./getCartFromLs";
 
 let cartProdFromLs = getCartFromLocalStorage();
@@ -17,6 +18,14 @@ const showCartProd = () => {
         productClone.querySelector('.productName').textContent = name;
         productClone.querySelector('.category').textContent = category;
         productClone.querySelector('.productImage').src = image;
+        const prodQuant = cartProdFromLs.find((prod) => prod.id === id).quantity;
+        productClone.querySelector('.productPrice').textContent =  Number(price* prodQuant);
+        productClone.querySelector('.productQuantity').setAttribute('data-quantity', prodQuant.toString());
+        productClone.querySelector('.productQuantity').textContent = prodQuant;
+
+        productClone.querySelector('.stockElement').addEventListener('click', (event)=> {
+                    cartQuantityToggle(event, id, stock);
+        });
         productCartContainer.append(productClone);
     }) 
 };
