@@ -1,6 +1,7 @@
 import products from './api/products.json';
 import { fetchQuanityFromLs } from './fetchQuanityFromLs';
 import { getCartFromLocalStorage } from "./getCartFromLs";
+import { removeFromCart } from './removeFromCart';
 
 let cartProdFromLs = getCartFromLocalStorage();
 let filteredProd = products.filter((currProd) => {
@@ -22,6 +23,9 @@ const showCartProd = () => {
         productClone.querySelector('.productPrice').textContent = lsActualData.price;
         productClone.querySelector('.productQuantity').textContent = lsActualData.quantity;
         productClone.querySelector('.productQuantity').setAttribute('data-quantity', lsActualData.quantity.toString());
+        productClone.querySelector('.remove-to-cart-button').addEventListener('click', () => {
+            removeFromCart(id);
+        } );
         productCartContainer.append(productClone);
     }) 
 };
